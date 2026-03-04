@@ -1,0 +1,37 @@
+[
+  {
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [{"internalType": "address", "name": "_donor", "type": "address"}],
+    "name": "getDonorCertificates",
+    "outputs": [{"internalType": "uint256[]", "name": "", "type": "uint256[]"}],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{"internalType": "uint256", "name": "_tokenId", "type": "uint256"}],
+    "name": "getCertificate",
+    "outputs": [
+      {
+        "components": [
+          {"internalType": "uint256", "name": "tokenId", "type": "uint256"},
+          {"internalType": "address", "name": "donor", "type": "address"},
+          {"internalType": "uint256", "name": "donationAmount", "type": "uint256"},
+          {"internalType": "uint256", "name": "studentId", "type": "uint256"},
+          {"internalType": "string", "name": "studentName", "type": "string"},
+          {"internalType": "uint256", "name": "timestamp", "type": "uint256"},
+          {"internalType": "string", "name": "impactDescription", "type": "string"},
+          {"internalType": "string", "name": "metadataURI", "type": "string"}
+        ],
+        "internalType": "struct DonationNFT.Certificate",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]
