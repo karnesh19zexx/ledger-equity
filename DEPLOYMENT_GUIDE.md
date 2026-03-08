@@ -1,4 +1,4 @@
-# 🚀 EduChain Deployment Guide
+# 🚀 Ledger Equity Deployment Guide
 
 ## Step-by-Step Deployment to Sepolia Testnet
 
@@ -33,7 +33,7 @@
    - Go to [infura.io/dashboard](https://infura.io/dashboard)
    - Click "Create New Key"
    - Select "Web3 API"
-   - Name it "EduChain"
+   - Name it "Ledger Equity"
 
 2. **Copy API Key:**
    - Copy your Project ID
@@ -147,7 +147,7 @@ npm run dev
 
 2. **Open browser:**
    - Navigate to [http://localhost:3000](http://localhost:3000)
-   - You should see the EduChain homepage
+   - You should see the Ledger Equity homepage
 
 3. **Connect MetaMask:**
    - Click "Connect Wallet"
@@ -257,4 +257,4 @@ mainnet: {
 
 ---
 
-**🎉 Congratulations! Your EduChain platform is live!**
+**🎉 Congratulations! Your Ledger Equity platform is live!**

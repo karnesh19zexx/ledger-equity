@@ -1,4 +1,4 @@
-# ⚡ EduChain Quick Start Guide
+# ⚡ Ledger Equity Quick Start Guide
 
 Get up and running in 5 minutes!
 
@@ -12,7 +12,7 @@ Get up and running in 5 minutes!
 ### 1️⃣ Clone & Install (1 min)
 ```bash
 git clone <repo-url>
-cd educhain-donation-platform
+cd ledger-equity-donation-platform
 npm install
 ```
 

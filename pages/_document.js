@@ -5,18 +5,18 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <meta charSet="utf-8" />
-        <meta name="description" content="EduChain - Blockchain-based micro-donation platform for education equity. Supporting SDG 4 and SDG 10." />
+        <meta name="description" content="Ledger Equity - Blockchain-based micro-donation platform for education equity. Supporting SDG 4 and SDG 10." />
         <meta name="keywords" content="blockchain, education, donations, ethereum, web3, SDG4, SDG10, NFT, transparency" />
-        <meta name="author" content="EduChain Team" />
+        <meta name="author" content="Ledger Equity Team" />
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="EduChain - Education Through Blockchain" />
+        <meta property="og:title" content="Ledger Equity - Education Through Blockchain" />
         <meta property="og:description" content="Make transparent, traceable micro-donations directly to students in need." />
         
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:title" content="EduChain - Education Through Blockchain" />
+        <meta property="twitter:title" content="Ledger Equity - Education Through Blockchain" />
         <meta property="twitter:description" content="Make transparent, traceable micro-donations directly to students in need." />
         
         {/* Favicon */}

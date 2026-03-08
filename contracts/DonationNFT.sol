@@ -4,11 +4,9 @@ pragma solidity ^0.8.20;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
 
 contract DonationNFT is ERC721, ERC721URIStorage, Ownable {
-    using Counters for Counters.Counter;
-    Counters.Counter private _tokenIds;
+    uint256 private _tokenIds;
     
     struct Certificate {
         uint256 tokenId;
@@ -31,7 +29,7 @@ contract DonationNFT is ERC721, ERC721URIStorage, Ownable {
         uint256 indexed studentId
     );
     
-    constructor() ERC721("EduChain Impact Certificate", "EDUNFT") Ownable(msg.sender) {}
+    constructor() ERC721("Ledger Equity Impact Certificate", "LEQNFT") Ownable(msg.sender) {}
     
     function mintCertificate(
         address _donor,
@@ -41,8 +39,8 @@ contract DonationNFT is ERC721, ERC721URIStorage, Ownable {
         string memory _impactDescription,
         string memory _metadataURI
     ) external onlyOwner returns (uint256) {
-        _tokenIds.increment();
-        uint256 newTokenId = _tokenIds.current();
+        _tokenIds++;
+        uint256 newTokenId = _tokenIds;
         
         _safeMint(_donor, newTokenId);
         _setTokenURI(newTokenId, _metadataURI);
@@ -70,12 +68,12 @@ contract DonationNFT is ERC721, ERC721URIStorage, Ownable {
     }
     
     function getCertificate(uint256 _tokenId) external view returns (Certificate memory) {
-        require(_tokenId <= _tokenIds.current() && _tokenId > 0, "Invalid token ID");
+        require(_tokenId <= _tokenIds && _tokenId > 0, "Invalid token ID");
         return certificates[_tokenId];
     }
     
     function totalSupply() external view returns (uint256) {
-        return _tokenIds.current();
+        return _tokenIds;
     }
     
     // Override required functions

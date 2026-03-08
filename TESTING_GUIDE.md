@@ -1,4 +1,4 @@
-# 🧪 EduChain Testing Guide
+# 🧪 Ledger Equity Testing Guide
 
 ## Pre-Testing Checklist
 

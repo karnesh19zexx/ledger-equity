@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { FaWallet, FaGraduationCap, FaHandHoldingHeart, FaChartLine, FaMap } from 'react-icons/fa';
+import { FaWallet, FaGraduationCap, FaHandHoldingHeart, FaChartLine, FaMap, FaPaperPlane } from 'react-icons/fa';
 import useWeb3Store from '../store/useWeb3Store';
 import { toast } from 'react-toastify';
 
@@ -51,7 +51,7 @@ export default function Navbar() {
               <div className="bg-gradient-to-r from-primary-600 to-secondary-600 p-2 rounded-lg">
                 <FaGraduationCap className="text-white text-2xl" />
               </div>
-              <span className="text-2xl font-bold gradient-text">EduChain</span>
+              <span className="text-2xl font-bold gradient-text">Ledger Equity</span>
             </motion.div>
           </Link>
 
@@ -64,6 +64,16 @@ export default function Navbar() {
               >
                 <FaHandHoldingHeart />
                 <span className="font-medium">Donate</span>
+              </motion.div>
+            </Link>
+            
+            <Link href="/request">
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                className="flex items-center space-x-2 text-gray-700 hover:text-primary-600 transition-colors cursor-pointer"
+              >
+                <FaPaperPlane />
+                <span className="font-medium">Request</span>
               </motion.div>
             </Link>
             

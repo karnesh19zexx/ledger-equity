@@ -42,3 +42,6 @@ yarn-error.log*
 
 # Contract addresses (optional - remove if you want to commit)
 contracts-addresses.json
+
+# Data storage
+data/requests.json

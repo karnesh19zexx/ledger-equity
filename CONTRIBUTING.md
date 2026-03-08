@@ -1,6 +1,6 @@
-# 🤝 Contributing to EduChain
+# 🤝 Contributing to Ledger Equity
 
-Thank you for considering contributing to EduChain! This project aims to make education accessible through blockchain technology.
+Thank you for considering contributing to Ledger Equity! This project aims to make education accessible through blockchain technology.
 
 ## How to Contribute
 

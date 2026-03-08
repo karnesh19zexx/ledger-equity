@@ -12,12 +12,39 @@ const useWeb3Store = create((set, get) => ({
   certificates: [],
   error: null,
 
+  // Check for existing wallet connection on mount
+  checkConnection: async () => {
+    try {
+      // Check if wallet was previously connected
+      const wasConnected = localStorage.getItem('walletConnected');
+      if (wasConnected === 'true' && typeof window !== 'undefined' && window.ethereum) {
+        const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+        if (accounts.length > 0) {
+          set({ account: accounts[0], isConnected: true });
+          // Load data
+          await get().loadStudents();
+          await get().loadPools();
+          await get().loadStats();
+          await get().loadCertificates();
+        } else {
+          localStorage.removeItem('walletConnected');
+        }
+      }
+    } catch (error) {
+      console.error('Error checking connection:', error);
+      localStorage.removeItem('walletConnected');
+    }
+  },
+
   // Actions
   connectWallet: async () => {
     set({ isLoading: true, error: null });
     try {
       const address = await web3Provider.connect();
       set({ account: address, isConnected: true });
+      
+      // Store connection state
+      localStorage.setItem('walletConnected', 'true');
       
       // Load initial data
       await get().loadStudents();
@@ -35,6 +62,7 @@ const useWeb3Store = create((set, get) => ({
   },
 
   disconnectWallet: () => {
+    localStorage.removeItem('walletConnected');
     set({
       account: null,
       isConnected: false,

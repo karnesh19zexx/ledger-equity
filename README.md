@@ -1,10 +1,10 @@
-# 🌍 EduChain - Blockchain-Based Micro-Donation Platform for Education Equity
+# 🌍 Ledger Equity - Blockchain-Based Micro-Donation Platform for Education Equity
 
-![EduChain Banner](https://img.shields.io/badge/Blockchain-Education-blue) ![SDG 4](https://img.shields.io/badge/SDG-4%20Quality%20Education-green) ![SDG 10](https://img.shields.io/badge/SDG-10%20Reduced%20Inequalities-orange)
+![Ledger Equity Banner](https://img.shields.io/badge/Blockchain-Education-blue) ![SDG 4](https://img.shields.io/badge/SDG-4%20Quality%20Education-green) ![SDG 10](https://img.shields.io/badge/SDG-10%20Reduced%20Inequalities-orange)
 
 ## 🎯 Project Overview
 
-EduChain is a revolutionary blockchain-based micro-donation platform addressing the global education equity crisis. With **250 million children** lacking access to quality education and traditional donations losing **30% to intermediaries**, EduChain leverages blockchain technology to ensure **90%+ of donations reach beneficiaries** directly.
+Ledger Equity is a revolutionary blockchain-based micro-donation platform addressing the global education equity crisis. With **250 million children** lacking access to quality education and traditional donations losing **30% to intermediaries**, Ledger Equity leverages blockchain technology to ensure **90%+ of donations reach beneficiaries** directly.
 
 ### 🌟 Key Features
 
@@ -57,7 +57,7 @@ EduChain is a revolutionary blockchain-based micro-donation platform addressing 
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd educhain-donation-platform
+cd ledger-equity-donation-platform
 
 # Install dependencies
 npm install
@@ -232,7 +232,7 @@ Manages collaborative school-level funding pools.
 ## 📁 Project Structure
 
 ```
-educhain-donation-platform/
+ledger-equity-donation-platform/
 ├── contracts/               # Solidity smart contracts
 │   ├── DonationPlatform.sol
 │   ├── DonationNFT.sol

@@ -1,4 +1,4 @@
-# 🎤 EduChain - Demo Presentation Guide
+# 🎤 Ledger Equity - Demo Presentation Guide
 
 ## 📋 Table of Contents
 1. [Opening Hook (30 seconds)](#opening-hook)
@@ -15,7 +15,7 @@
 
 **Start with impact:**
 
-> "Imagine a world where every dollar you donate reaches the student who needs it. No middlemen. No hidden fees. Just pure, transparent impact. That's EduChain."
+> "Imagine a world where every dollar you donate reaches the student who needs it. No middlemen. No hidden fees. Just pure, transparent impact. That's Ledger Equity."
 
 **Show the dashboard immediately:**
 - Pull up the live platform
@@ -45,9 +45,9 @@
 
 ## 🚀 Solution Overview (1 minute)
 
-**Introduce EduChain:**
+**Introduce Ledger Equity:**
 
-> "EduChain is a blockchain-based micro-donation platform where donors directly fund verified student needs, tracked transparently on Ethereum."
+> "Ledger Equity is a blockchain-based micro-donation platform where donors directly fund verified student needs, tracked transparently on Ethereum."
 
 ### Core Innovation:
 1. **Smart Contracts** - Automated, trustless donations
@@ -245,7 +245,7 @@ function donate(uint256 _studentId, string memory _message)
 
 **Show slide with numbers:**
 
-| Metric | Traditional | EduChain |
+| Metric | Traditional | Ledger Equity |
 |--------|-------------|----------|
 | Donation efficiency | 70% | 90%+ |
 | Transaction time | Days | Seconds |
@@ -297,10 +297,10 @@ function donate(uint256 _studentId, string memory _message)
 
 **Powerful close:**
 
-> "Education is a human right. But 250 million children are being left behind. EduChain gives us the tools to change that—one transparent, blockchain-verified donation at a time."
+> "Education is a human right. But 250 million children are being left behind. Ledger Equity gives us the tools to change that—one transparent, blockchain-verified donation at a time."
 
 **Show final slide:**
-- Platform: educhain.com (hypothetical)
+- Platform: ledgerequity.com (hypothetical)
 - GitHub: [repo link]
 - Contracts: Verified on Sepolia Etherscan
 - Try it: Get test ETH and donate today!

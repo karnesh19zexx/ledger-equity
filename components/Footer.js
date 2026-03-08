@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* About */}
           <div>
-            <h3 className="text-xl font-bold mb-4">EduChain</h3>
+            <h3 className="text-xl font-bold mb-4">Ledger Equity</h3>
             <p className="text-gray-300 text-sm">
               Empowering education through transparent blockchain donations. 
               Every contribution makes a difference.
@@ -93,7 +93,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-gray-700 mt-8 pt-8 text-center">
           <p className="text-gray-300 text-sm flex items-center justify-center gap-2">
-            Made with <FaHeart className="text-red-500" /> for SDG 4 & 10 • {currentYear} EduChain
+            Made with <FaHeart className="text-red-500" /> for SDG 4 & 10 • {currentYear} Ledger Equity
           </p>
           <p className="text-gray-400 text-xs mt-2">
             Blockchain-powered education equity platform

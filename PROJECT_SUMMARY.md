@@ -1,4 +1,4 @@
-# 📊 EduChain - Project Summary
+# 📊 Ledger Equity - Project Summary
 
 ## 🎯 Mission
 Empower education equity through transparent blockchain donations, ensuring 90%+ of contributions reach students directly.
@@ -66,7 +66,7 @@ Empower education equity through transparent blockchain donations, ensuring 90%+
 ## 📁 Project Structure
 
 ```
-educhain-donation-platform/
+ledger-equity-donation-platform/
 ├── contracts/              # Smart contracts
 ├── scripts/               # Deployment scripts
 ├── lib/                   # Web3 integration
@@ -145,7 +145,7 @@ educhain-donation-platform/
 ## 🎤 Demo Highlights
 
 **30-second pitch:**
-> "EduChain uses blockchain to ensure education donations reach students directly. 90%+ efficiency, instant impact, NFT proof. We're solving the $250M education crisis with transparency."
+> "Ledger Equity uses blockchain to ensure education donations reach students directly. 90%+ efficiency, instant impact, NFT proof. We're solving the $250M education crisis with transparency."
 
 **Key demo moments:**
 1. Connect wallet in seconds
@@ -236,7 +236,7 @@ educhain-donation-platform/
 
 ## 🎉 Final Thoughts
 
-EduChain demonstrates that blockchain technology can solve real-world problems with:
+Ledger Equity demonstrates that blockchain technology can solve real-world problems with:
 - **Transparency** - Every transaction visible
 - **Efficiency** - 90%+ reaches beneficiaries
 - **Innovation** - NFT certificates, global maps

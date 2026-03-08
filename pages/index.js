@@ -10,6 +10,27 @@ import useWeb3Store from '../store/useWeb3Store';
 export default function Home() {
   const { students, pools, stats, isConnected, loadStudents, loadPools, loadStats } = useWeb3Store();
   const [activeTab, setActiveTab] = useState('students');
+  const [approvedRequests, setApprovedRequests] = useState([]);
+  const [loadingRequests, setLoadingRequests] = useState(true);
+
+  // Fetch approved requests from API
+  useEffect(() => {
+    const fetchApprovedRequests = async () => {
+      try {
+        const response = await fetch('/api/requests?status=approved');
+        if (response.ok) {
+          const data = await response.json();
+          setApprovedRequests(data);
+        }
+      } catch (error) {
+        console.error('Error fetching approved requests:', error);
+      } finally {
+        setLoadingRequests(false);
+      }
+    };
+
+    fetchApprovedRequests();
+  }, []);
 
   useEffect(() => {
     if (isConnected) {
@@ -194,54 +215,91 @@ export default function Home() {
             </div>
           </div>
 
-          {!isConnected ? (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-center py-20"
-            >
-              <div className="glass-effect p-12 rounded-2xl max-w-md mx-auto">
-                <FaHandHoldingHeart className="text-6xl text-primary-600 mx-auto mb-4" />
-                <h3 className="text-2xl font-bold mb-4">Connect Your Wallet</h3>
-                <p className="text-gray-600 mb-6">
-                  Connect your MetaMask wallet to start making a difference
-                </p>
-              </div>
-            </motion.div>
-          ) : (
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-            >
-              {activeTab === 'students' ? (
-                students.length > 0 ? (
-                  students.map((student) => (
-                    <motion.div key={student.id} variants={itemVariants}>
-                      <StudentCard student={student} />
-                    </motion.div>
-                  ))
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {activeTab === 'students' ? (
+              <>
+                {/* Show approved requests first */}
+                {approvedRequests.length > 0 && approvedRequests.map((request) => (
+                  <motion.div key={`request-${request.id}`} variants={itemVariants}>
+                    <StudentCard student={{
+                      id: request.id,
+                      name: request.type === 'organization' ? request.organization_name : request.name,
+                      school: request.school || request.organization_type || 'Organization',
+                      location: request.location,
+                      story: request.description,
+                      targetAmount: request.target_amount,
+                      receivedAmount: request.raised || 0,
+                      raised: request.raised || 0,
+                      donors: request.donors || 0,
+                      needs: request.needs,
+                      email: request.email,
+                      walletAddress: request.wallet_address,
+                      proofDocuments: request.proof_documents,
+                      verified: true,
+                      isRequest: true, // Flag to identify this is from requests API
+                    }} />
+                  </motion.div>
+                ))}
+                
+                {/* Show blockchain students if wallet is connected */}
+                {isConnected && students.length > 0 && students.map((student) => (
+                  <motion.div key={`student-${student.id}`} variants={itemVariants}>
+                    <StudentCard student={student} />
+                  </motion.div>
+                ))}
+                
+                {/* Show message if no students available */}
+                {approvedRequests.length === 0 && (!isConnected || students.length === 0) && !loadingRequests && (
+                  <div className="col-span-full text-center py-12">
+                    <div className="glass-effect p-12 rounded-2xl max-w-md mx-auto">
+                      {!isConnected ? (
+                        <>
+                          <FaHandHoldingHeart className="text-6xl text-primary-600 mx-auto mb-4" />
+                          <h3 className="text-2xl font-bold mb-4">Connect Your Wallet</h3>
+                          <p className="text-gray-600 mb-6">
+                            Connect your MetaMask wallet to see blockchain students and make donations
+                          </p>
+                        </>
+                      ) : (
+                        <p className="text-gray-600">No students available at the moment.</p>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </>
+            ) : (
+              <>
+                {isConnected ? (
+                  pools.length > 0 ? (
+                    pools.map((pool) => (
+                      <motion.div key={pool.id} variants={itemVariants}>
+                        <SchoolPoolCard pool={pool} />
+                      </motion.div>
+                    ))
+                  ) : (
+                    <div className="col-span-full text-center py-12">
+                      <p className="text-gray-600">No active school pools at the moment.</p>
+                    </div>
+                  )
                 ) : (
                   <div className="col-span-full text-center py-12">
-                    <p className="text-gray-600">No students available at the moment.</p>
+                    <div className="glass-effect p-12 rounded-2xl max-w-md mx-auto">
+                      <FaHandHoldingHeart className="text-6xl text-primary-600 mx-auto mb-4" />
+                      <h3 className="text-2xl font-bold mb-4">Connect Your Wallet</h3>
+                      <p className="text-gray-600 mb-6">
+                        Connect your MetaMask wallet to see school pools and contribute
+                      </p>
+                    </div>
                   </div>
-                )
-              ) : (
-                pools.length > 0 ? (
-                  pools.map((pool) => (
-                    <motion.div key={pool.id} variants={itemVariants}>
-                      <SchoolPoolCard pool={pool} />
-                    </motion.div>
-                  ))
-                ) : (
-                  <div className="col-span-full text-center py-12">
-                    <p className="text-gray-600">No active school pools at the moment.</p>
-                  </div>
-                )
-              )}
-            </motion.div>
-          )}
+                )}
+              </>
+            )}
+          </motion.div>
         </div>
       </section>
 

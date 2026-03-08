@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaMapMarkerAlt, FaCheckCircle, FaDonate } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaCheckCircle, FaDonate, FaFileAlt, FaDownload } from 'react-icons/fa';
 import useWeb3Store from '../store/useWeb3Store';
 import { toast } from 'react-toastify';
 
@@ -19,8 +19,55 @@ export default function StudentCard({ student }) {
     }
 
     try {
-      await donate(student.id, amount, message);
-      toast.success(`Successfully donated ${amount} ETH to ${student.name}!`);
+      // Check if this is a direct wallet donation (from requests) or blockchain student
+      if (student.isRequest && student.email) {
+        // Direct wallet-to-wallet donation
+        const { account } = useWeb3Store.getState();
+        if (!account) {
+          toast.error('Please connect your wallet first');
+          return;
+        }
+
+        // Use web3 to send ETH directly to beneficiary's wallet
+        const { ethers } = await import('ethers');
+        const provider = new ethers.BrowserProvider(window.ethereum);
+        const signer = await provider.getSigner();
+        
+        const tx = await signer.sendTransaction({
+          to: student.walletAddress || student.wallet,
+          value: ethers.parseEther(amount),
+        });
+
+        toast.info('Transaction sent! Waiting for confirmation...');
+        await tx.wait();
+        
+        toast.success(`Successfully donated ${amount} ETH to ${student.name}!`);
+        
+        // Update database with donation info
+        const recordResponse = await fetch('/api/donations/record', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            requestId: student.id,
+            donor: account,
+            amount: amount,
+            transactionHash: tx.hash,
+            message: message
+          })
+        });
+
+        if (recordResponse.ok) {
+          // Reload page to show updated progress
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+        }
+      } else {
+        // Use smart contract donation for blockchain students
+        await donate(student.id, amount, message);
+        toast.success(`Successfully donated ${amount} ETH to ${student.name}!`);
+      }
+      
       setShowModal(false);
       setAmount('');
       setMessage('');
@@ -80,6 +127,29 @@ export default function StudentCard({ student }) {
               <span>Goal: {parseFloat(student.targetAmount).toFixed(4)} ETH</span>
             </div>
           </div>
+
+          {/* Proof Document */}
+          {student.proofDocuments && (
+            <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <FaFileAlt className="text-blue-600" />
+                  <span className="text-sm font-medium text-gray-700">
+                    Proof Document Available
+                  </span>
+                </div>
+                <a
+                  href={student.proofDocuments}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-700 font-medium"
+                >
+                  <FaDownload className="text-xs" />
+                  View
+                </a>
+              </div>
+            </div>
+          )}
 
           {/* Donate Button */}
           <motion.button
